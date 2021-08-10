@@ -32,6 +32,20 @@ function resetSelected() {
   });
 }
 
+//reset all stuff
+function resetAll() {
+  resetSelected();
+  playerScore = 0;
+  computerScore = 0;
+  playerChoiceEl.textContent = "";
+  computerChoiceEl.textContent = "";
+
+  playerScoreEl.textContent = 0;
+  computerScoreEl.textContent = 0;
+
+  resultText.textContent = "Game Reseted!";
+}
+
 let computerChoice = "";
 
 function computerRandomChoice() {
@@ -73,8 +87,6 @@ let playerScore = 0;
 let computerScore = 0;
 
 function updateScore(playerChoice) {
-  console.log(playerChoice, computerChoice);
-
   if (playerChoice === computerChoice) {
     resultText.textContent = "It's Tie";
   } else {
@@ -129,3 +141,6 @@ function select(playerChoice) {
       break;
   }
 }
+
+//game initlize
+resetAll();
