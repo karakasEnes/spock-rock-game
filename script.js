@@ -43,7 +43,6 @@ function computerRandomChoice() {
 }
 
 function displayComputerChoice() {
-  console.log(computerChoice);
   switch (computerChoice) {
     case "rock":
       computerRock.classList.add("selected");
@@ -70,14 +69,40 @@ function displayComputerChoice() {
   }
 }
 
-function checkResult() {
+let playerScore = 0;
+let computerScore = 0;
+
+function updateScore(playerChoice) {
+  console.log(playerChoice, computerChoice);
+
+  if (playerChoice === computerChoice) {
+    resultText.textContent = "It's Tie";
+  } else {
+    const userChoice = choices[playerChoice];
+    const resultNumber = userChoice.defeats.indexOf(computerChoice);
+
+    if (resultNumber >= 0) {
+      playerScore++;
+      resultText.textContent = "You Won!";
+    } else {
+      computerScore++;
+      resultText.textContent = "Computer Won!";
+    }
+  }
+
+  playerScoreEl.textContent = playerScore;
+  computerScoreEl.textContent = computerScore;
+}
+
+function checkResult(playerChoice) {
   resetSelected();
   computerRandomChoice();
   displayComputerChoice();
+  updateScore(playerChoice);
 }
 
 function select(playerChoice) {
-  checkResult();
+  checkResult(playerChoice);
 
   switch (playerChoice) {
     case "rock":
