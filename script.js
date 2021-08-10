@@ -30,6 +30,9 @@ function resetSelected() {
   allGameIcons.forEach((icon) => {
     icon.classList.remove("selected");
   });
+
+  //stopConffetti and remove
+  //each time player selecting new icon it should remove and stop conffetti
 }
 
 //reset all stuff
@@ -45,6 +48,11 @@ function resetAll() {
 
   resultText.textContent = "Game Reseted!";
 }
+
+// if you have import export state in your script js
+// you have to use something like that in order to able acess function
+// otherwise you cant access these function from html which you need.
+// window.resetAll = resetAll;
 
 let computerChoice = "";
 
@@ -96,6 +104,7 @@ function updateScore(playerChoice) {
     if (resultNumber >= 0) {
       playerScore++;
       resultText.textContent = "You Won!";
+      //startConffetti
     } else {
       computerScore++;
       resultText.textContent = "Computer Won!";
