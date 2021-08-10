@@ -1,3 +1,5 @@
+import { startConfetti, stopConfetti, removeConfetti } from "./confetti.js";
+
 const playerScoreEl = document.getElementById("playerScore");
 const playerChoiceEl = document.getElementById("playerChoice");
 const computerScoreEl = document.getElementById("computerScore");
@@ -30,6 +32,8 @@ function resetSelected() {
   allGameIcons.forEach((icon) => {
     icon.classList.remove("selected");
   });
+  stopConfetti();
+  removeConfetti();
 
   //stopConffetti and remove
   //each time player selecting new icon it should remove and stop conffetti
@@ -48,6 +52,7 @@ function resetAll() {
 
   resultText.textContent = "Game Reseted!";
 }
+window.resetAll = resetAll;
 
 // if you have import export state in your script js
 // you have to use something like that in order to able acess function
@@ -105,6 +110,7 @@ function updateScore(playerChoice) {
       playerScore++;
       resultText.textContent = "You Won!";
       //startConffetti
+      startConfetti();
     } else {
       computerScore++;
       resultText.textContent = "Computer Won!";
@@ -151,5 +157,6 @@ function select(playerChoice) {
   }
 }
 
+window.select = select;
 //game initlize
 resetAll();
